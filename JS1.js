@@ -1,6 +1,3 @@
-// Define the API endpoint URL
-
-// Function to fetch and display user data
 function fetchAndDisplayUser() {
     const userIdInput = document.getElementById('user-id-input')
     const userId = userIdInput.value.trim();
@@ -41,6 +38,7 @@ function fetchAndDisplayUser() {
 
             //user-data div
             const userDataContainer = document.getElementById('user-data')
+            const userTableContainer = document.getElementById('user-table-container')
 
             streetElement.textContent = userData.address.street
             cityElement.textContent = userData.address.city
@@ -48,6 +46,7 @@ function fetchAndDisplayUser() {
             geoElement.textContent = userData.address.geo.lat + ", " + userData.address.geo.lng
 
             //Change display type
+            userTableContainer.style.display = 'none';
             userDataContainer.style.display = 'block';
         })
         .catch(error => {
@@ -57,7 +56,6 @@ function fetchAndDisplayUser() {
 
 function fetchAndDisplayAllUsers(){
     const userTableBody = document.querySelector('#user-table tbody')
-
     fetch('https://jsonplaceholder.typicode.com/users')
         .then(res => {
             if(!res.ok) {
@@ -67,13 +65,13 @@ function fetchAndDisplayAllUsers(){
         })
         .then(users => {
             userTableBody.innerHTML = '';
-
             users.forEach(user => {
                 const row = document.createElement('tr')
                 const nameCell = document.createElement('td')
                 const phoneCell = document.createElement('td')
 
-                const userDataContainer = document.getElementById('user-table-container')
+                const userTableContainer = document.getElementById('user-table-container')
+                const userDataContainer = document.getElementById('user-data')
 
                 nameCell.textContent = user.name;
                 phoneCell.textContent = user.phone;
@@ -83,7 +81,8 @@ function fetchAndDisplayAllUsers(){
 
                 userTableBody.appendChild(row)
 
-                userDataContainer.style.display = 'block'
+                userDataContainer.style.display = 'none'
+                userTableContainer.style.display = 'block'
             })
                 .catch(error => {
                     console.error('Fetch error', error)
@@ -91,7 +90,7 @@ function fetchAndDisplayAllUsers(){
         })
 }
 
-// Add a click event listener to the fetch button
+// Add a click event listener to the fetch buttons
 const fetchUserByIdButton = document.getElementById('fetch-button');
 fetchUserByIdButton.addEventListener('click', fetchAndDisplayUser)
 
