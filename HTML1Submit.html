@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <title>Fetch and Display User Data</title>
+</head>
+<body>
+<label for="user-id-input">User ID</label>
+<input type=number id="user-id-input" placeholder="Enter User ID">
+<button id="fetch-button">Fetch User</button>
+<button id="fetch-all-button">Get All</button>
+
+
+<div id="user-data" style="display: none;">
+    <h2>User data</h2>
+    <p>Name: <span id="name"></span></p>
+    <p>Phone: <span id="phone"></span></p>
+    <br>
+    <p><strong>Address</strong></p>
+    <p>Street: <span id="street"></span></p>
+    <p>City: <span id="city"></span></p>
+    <p>Zip: <span id="zip"></span></p>
+    <p>Geo (lat, lng): <span id="geo"></span></p>
+</div>
+
+<div id="user-table-container" style="display: none;">
+    <table id="user-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+    <tbody>
+
+    </tbody>
+    </table>
+</div>
+
+<script src="JS1.js"></script>
+</body>
+</html>
